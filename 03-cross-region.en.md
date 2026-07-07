@@ -189,14 +189,3 @@ traceroute to 10.1.1.37 (10.1.1.37), 30 hops max, 60 byte packets
 | Data processing | $0.045/GB (NAT) + Internet egress | $0.02/GB (cross-region transfer only) |
 | Per 1TB/month | ~$155 | ~$20 |
 | Estimated savings | - | **~85%** |
-
----
-
-### Measured environment (reference)
-| Field | VPC A (Requester) | VPC B (Accepter) |
-|-------|-------------------|------------------|
-| Account | 602849569839 (team-a) | 794386800974 (team-b) |
-| Region | eu-central-1 (Frankfurt) | eu-west-3 (Paris) |
-| VPC CIDR | 10.0.0.0/16 | 10.1.0.0/16 |
-| EC2 Private IP | 10.0.1.77 | 10.1.1.37 |
-| Peering ID | pcx-05a105a763e2b9df7 | (uses `--peer-region`) |
