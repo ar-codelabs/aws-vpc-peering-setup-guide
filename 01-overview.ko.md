@@ -63,18 +63,6 @@ After:   VPC A ◄──── VPC Peering (AWS Backbone) ────► VPC B
 
 ---
 
-## 같은 리전 vs 다른 리전 — 무엇이 다른가
-
-| 항목 | 같은 리전 (가이드 ②) | 다른 리전 (가이드 ③) |
-|------|----------------------|----------------------|
-| CLI `--peer-region` | 생략 가능 | **필수** |
-| Security Group 상대 참조 | ✅ 상대 계정 SG ID 참조 가능 | ❌ 불가 → CIDR로만 허용 |
-| Jumbo Frame (MTU 9001) | ✅ 지원 | ❌ MTU 1500 고정 |
-| 데이터 전송 요금 | 동일 리전 요금(저렴/무료 구간) | Cross-region 전송료 발생 |
-| 실측 평균 RTT | **0.75ms** | **8.7ms** |
-
----
-
 ## 예시 환경 (가이드 공통 표기)
 
 | 항목 | VPC A | VPC B |
@@ -83,21 +71,6 @@ After:   VPC A ◄──── VPC Peering (AWS Backbone) ────► VPC B
 | VPC ID | vpc-aaaa | vpc-bbbb |
 | CIDR | 10.0.0.0/16 | 10.1.0.0/16 |
 | Route Table | rtb-aaaa | rtb-bbbb |
-
----
-
-## Troubleshooting (공통)
-
-| 증상 | 원인 | 해결 |
-|------|------|------|
-| Peering Status: `failed` | CIDR 겹침 | VPC CIDR 변경 후 재생성 |
-| Peering Status: `expired` | 7일 내 미수락 | 재생성 후 즉시 수락 (Accepter 계정에서) |
-| 수락 버튼 안 보임 | Requester 계정에서 조회 | Accepter 계정 자격증명으로 전환 |
-| ping 안 됨 (Peering active) | Route table 미설정 | 양쪽 route 추가 확인 |
-| ping 안 됨 (Route OK) | Security Group / NACL 차단 | 상대 CIDR(또는 SG) in/out 허용 확인 |
-| DNS resolve 안 됨 | DNS resolution 미활성화 | Peering DNS options 양쪽 활성화 |
-| 간헐적 timeout (cross-region) | MTU 이슈 | MTU 1500 확인 (jumbo frame 사용 X) |
-| SG ID 참조 실패 | Cross-region에서 SG 참조 시도 | CIDR로 변경 |
 
 ---
 
