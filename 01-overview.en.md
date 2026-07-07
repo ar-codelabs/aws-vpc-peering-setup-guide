@@ -61,18 +61,6 @@ After:   VPC A ◄──── VPC Peering (AWS Backbone) ────► VPC B
 
 ---
 
-## Same-region vs Cross-region — what differs
-
-| Item | Same region (Guide ②) | Different region (Guide ③) |
-|------|------------------------|----------------------------|
-| CLI `--peer-region` | Optional | **Required** |
-| Peer Security Group reference | ✅ SG ID reference allowed | ❌ Not allowed → CIDR only |
-| Jumbo Frame (MTU 9001) | ✅ Supported | ❌ MTU 1500 fixed |
-| Data transfer cost | Same-region rate (cheap/free tier) | Cross-region transfer cost |
-| Measured avg RTT | **0.75ms** | **8.7ms** |
-
----
-
 ## Example environment (common notation)
 
 | Field | VPC A | VPC B |
@@ -81,21 +69,6 @@ After:   VPC A ◄──── VPC Peering (AWS Backbone) ────► VPC B
 | VPC ID | vpc-aaaa | vpc-bbbb |
 | CIDR | 10.0.0.0/16 | 10.1.0.0/16 |
 | Route Table | rtb-aaaa | rtb-bbbb |
-
----
-
-## Troubleshooting (common)
-
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| Peering Status: `failed` | CIDR overlap | Change VPC CIDR and recreate |
-| Peering Status: `expired` | Not accepted within 7 days | Recreate and accept promptly (from Accepter account) |
-| Accept button not visible | Viewing from Requester account | Switch to Accepter account credentials |
-| ping fails (Peering active) | Route table missing | Verify routes on both sides |
-| ping fails (routes OK) | Security Group / NACL blocking | Verify peer CIDR (or SG) in/out allow |
-| DNS won't resolve | DNS resolution disabled | Enable peering DNS options on both sides |
-| Intermittent timeout (cross-region) | MTU issue | Ensure MTU 1500 (no jumbo frames) |
-| SG ID reference fails | SG reference attempted cross-region | Switch to CIDR |
 
 ---
 
