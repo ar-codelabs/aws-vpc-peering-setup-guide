@@ -189,14 +189,3 @@ traceroute to 10.1.1.37 (10.1.1.37), 30 hops max, 60 byte packets
 | 데이터 처리 | $0.045/GB (NAT) + 인터넷 전송비 | $0.02/GB (cross-region 전송만) |
 | 월 1TB 전송 기준 | ~$155 | ~$20 |
 | 예상 절감 | - | **약 85% 절감** |
-
----
-
-### 실측 환경 (참고)
-| 구분 | VPC A (Requester) | VPC B (Accepter) |
-|------|-------------------|------------------|
-| 계정 | 602849569839 (team-a) | 794386800974 (team-b) |
-| 리전 | eu-central-1 (Frankfurt) | eu-west-3 (Paris) |
-| VPC CIDR | 10.0.0.0/16 | 10.1.0.0/16 |
-| EC2 Private IP | 10.0.1.77 | 10.1.1.37 |
-| Peering ID | pcx-05a105a763e2b9df7 | (`--peer-region` 사용) |
