@@ -191,13 +191,3 @@ rtt min/avg/max/mdev = 0.703/0.757/0.819/0.052 ms
 
 → 모두 충족하면 정상. (실측 평균 RTT 0.75ms)
 
----
-
-### 실측 환경 (참고)
-| 구분 | VPC A (Requester) | VPC C (Accepter) |
-|------|-------------------|------------------|
-| 계정 | 602849569839 (team-a) | 794386800974 (team-b) |
-| 리전 | eu-central-1 | eu-central-1 |
-| VPC CIDR | 10.0.0.0/16 | 10.2.0.0/16 |
-| EC2 Private IP | 10.0.1.77 | 10.2.1.135 |
-| Peering ID | pcx-06cb153ca892eaf86 | (`--peer-region` 미사용) |
