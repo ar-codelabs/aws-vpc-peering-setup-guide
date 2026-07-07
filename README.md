@@ -48,8 +48,3 @@ vpc-peering-guide/
 ├── 03-cross-region.en.md      # ③ Different region
 └── images/                    # 캡쳐 이미지 / screenshots
 ```
-
-## 🖼️ 캡쳐 파일명 / Screenshot file names
-`images/` 폴더에 저장 / save in `images/`:
-- Tab 2: `tab2-1-peering-status.png`, `tab2-2-sg-reference.png`, `tab2-3-ping-a-to-c.png`, `tab2-4-ping-c-to-a.png`
-- Tab 3: `tab3-1-peering-status.png`, `tab3-2-ping-a-to-b.png`, `tab3-3-ping-b-to-a.png`, `tab3-4-traceroute.png`
